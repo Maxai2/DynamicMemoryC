@@ -162,11 +162,20 @@ int main()
 	{
 		system("cls");
 		SetConsoleTextAttribute(w, 7);
-		int conti = 1;
-		if (conti > 1)
+		static int conti = 1;
+		char ans;
+		if (conti != 1)
 		{
-			cout << "Do u want continue?(y/n)";
+			cout << "One more?(y/n): ";
+			cin >> ans;
+			
+			if (ans == 'n')
+			{
+				cout << "\n\nThe end!\n";
+				break;
+			}
 		}
+		system("cls");
 		cout << "Input the size of array elements: ";
 		int size;
 		cin >> size;
@@ -194,29 +203,42 @@ int main()
 
 			switch (sel)
 			{
-			case 1:
-				SetConsoleTextAttribute(w, 10);
-				cout << "\n\nAdd to the end";
-				SetConsoleTextAttribute(w, 7);
-				cout << "\nAdd from the middle by link";
-				cout << "\nDelete by link";
+				case 1:
+					SetConsoleTextAttribute(w, 10);
+					cout << "\n\nAdd to the end";
+					SetConsoleTextAttribute(w, 7);
+					cout << "\nAdd from the middle by link";
+					cout << "\nDelete element by link";
+					cout << "\nDelete array";
 				break;
 
-			case 2:
-				SetConsoleTextAttribute(w, 7);
-				cout << "\n\nAdd to the end";
-				SetConsoleTextAttribute(w, 10);
-				cout << "\nAdd from the middle by link";
-				SetConsoleTextAttribute(w, 7);
-				cout << "\nDelete by link";
+				case 2:
+					SetConsoleTextAttribute(w, 7);
+					cout << "\n\nAdd to the end";
+					SetConsoleTextAttribute(w, 10);
+					cout << "\nAdd from the middle by link";
+					SetConsoleTextAttribute(w, 7);
+					cout << "\nDelete element by link";
+					cout << "\nDelete array";
 				break;
 
-			case 3:
-				SetConsoleTextAttribute(w, 7);
-				cout << "\n\nAdd to the end";
-				cout << "\nAdd from the middle by link";
-				SetConsoleTextAttribute(w, 10);
-				cout << "\nDelete by link";
+				case 3:
+					SetConsoleTextAttribute(w, 7);
+					cout << "\n\nAdd to the end";
+					cout << "\nAdd from the middle by link";
+					SetConsoleTextAttribute(w, 10);
+					cout << "\nDelete element by link";
+					SetConsoleTextAttribute(w, 7);
+					cout << "\nDelete array";
+				break;
+
+				case 4:
+					SetConsoleTextAttribute(w, 7);
+					cout << "\n\nAdd to the end";
+					cout << "\nAdd from the middle by link";
+					cout << "\nDelete element by link";
+					SetConsoleTextAttribute(w, 10);
+					cout << "\nDelete array";
 			}
 
 			key = getch();
@@ -225,7 +247,7 @@ int main()
 
 			if (key == 72 && sel > 1) // Up
 				sel--;
-			else if (key == 80 && sel < 3) // Down
+			else if (key == 80 && sel < 4) // Down
 				sel++;
 			else if (key == 13 && sel == 1)
 			{
@@ -261,9 +283,12 @@ int main()
 				show(arr, size);
 				cout << endl;
 			}
-			else if (key == 27)
+			else if (key == 13 && sel == 4)
+			{
+				deleteArr(arr);
 				break;
+			}
 		}
-
+		conti++;
 	}
 }
